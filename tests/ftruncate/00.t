@@ -23,7 +23,9 @@ expect 0 open ${n0} O_WRONLY : ftruncate 0 567
 expect 567 lstat ${n0} size
 expect 0 unlink ${n0}
 
+filter_disable
 dd if=/dev/random of=${n0} bs=12345 count=1 >/dev/null 2>&1
+filter_enable
 expect 0 open ${n0} O_RDWR : ftruncate 0 23456
 expect 23456 lstat ${n0} size
 expect 0 open ${n0} O_WRONLY : ftruncate 0 1

@@ -13,7 +13,7 @@ n0=`namegen`
 nx=`dirgen_max`
 nxx="${nx}x"
 
-mkdir -p "${nx%/*}"
+mkdirp "${nx%/*}"
 
 expect 0 create ${nx} 0644
 expect 0 link ${nx} ${n0}

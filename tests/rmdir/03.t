@@ -12,7 +12,7 @@ echo "1..5"
 nx=`dirgen_max`
 nxx="${nx}x"
 
-mkdir -p "${nx%/*}"
+mkdirp "${nx%/*}"
 
 expect 0 mkdir ${nx} 0755
 expect dir,0755 stat ${nx} type,mode

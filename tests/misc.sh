@@ -277,6 +277,31 @@ nosuid()
 }
 fi
 
+export PMEMFILE_CD="`pwd`"
+cd()
+{
+	first=`echo "${1}" | head -c 1`
+	if [ $first = "/" ]; then
+		export PMEMFILE_CD="${1}"
+	else
+		export PMEMFILE_CD="${PMEMFILE_CD}/${1}"
+	fi
+}
+filter_disable()
+{
+	unset INTERCEPT_HOOK_CMDLINE_FILTER
+}
+filter_enable()
+{
+	export INTERCEPT_HOOK_CMDLINE_FILTER=pjdfstest
+}
+mkdirp()
+{
+	filter_disable
+	mkdir -p ${1}
+	filter_enable
+}
+
 # usage:
 #	create_file <type> <name>
 #	create_file <type> <name> <mode>
